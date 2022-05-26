@@ -1,0 +1,43 @@
+﻿@using Cart.Api.Models;
+@model IEnumerable<CartDto>
+
+@{
+    ViewData["Title"] = "Il mio carrello";
+}
+
+<div class="text-center">
+    <h3 class="Myh1">Il tuo Carrello:</h3>
+</div>
+
+ <table class=" table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.UserId)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model=>model.ProductId)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model=>model.Quantity)
+            </th>
+            
+      
+        </tr>
+
+         @if (Model!=null && Model.Any())
+    {
+        foreach(var product in Model)
+        {
+            <tr>
+                <td>@product.UserId</td>
+                <td>@product.ProductId</td>
+                <td>@product.Quantity</td>   
+            </tr>
+        }
+    }
+
+    else
+    {
+        <td colspan=3 class=" text-center">Il tuo carrello è vuoto</td>
+    }
+</table>

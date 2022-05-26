@@ -6,11 +6,29 @@
 }
 
 <div class="text-center">
-    <h1>Welcome in our site !!</h1>
-    <img src="cart.png"/>
+    <h1 class="Myh1">Welcome in our site !!</h1>
+    <img class="MyImg" src="~/images/cart.png"/>
     </div>
+
 <div>
-    <p>Sfoglia i nostri prodotti:</p>
+    <h3>Possibili operazioni:</h3>
+
+    <table class=" table">
+    <tr>
+        <td>
+            @Html.ActionLink("Aggiungi Elemento","Add")
+        </td>
+        <td>
+            @Html.ActionLink("Modifica Elemento","Edit")
+        </td>
+        <td>
+            @Html.ActionLink("Elimina Elemento","Delete")
+        </td>
+   </tr>
+</table>
+</div>
+<div>
+    <h3>Sfoglia i nostri prodotti:</h3>
 
     <table class=" table">
         <tr>
@@ -39,7 +57,7 @@
                 <td>@product.Quantity</td>
                 <td>@product.Description</td>
                 <td>
-                    @Html.ActionLink("Aggiungi al carrello", "MioCarrello", new{ IDProduct=product.Id}) |
+                    @Html.ActionLink("Aggiungi al carrello", "Cart", new{ IDProduct=product.Id}) 
                     
                     
                 </td>

@@ -2,8 +2,9 @@
 using Product.Api.SQL;
 using Product.Api.Models;
 using System.Diagnostics;
-using Web.Graphic.Models;
+using Cart.Api.Models;
 using System.Text.Json;
+using Web.Graphic.Models;
 
 namespace Web.Graphic.Controllers
 {
@@ -29,6 +30,30 @@ namespace Web.Graphic.Controllers
             return View(M);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> CartAsync()
+        {
+            var client = _client.CreateClient("CartApi");
+            Message = await client.GetStringAsync("Cart/List");
+            var M = JsonSerializer.Deserialize<IEnumerable<CartDto>>(Message);
+            return View(M);
+        }
+
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task <IActionResult> Add(ProductDto product)
+        {
+            var client = _client.CreateClient("ProductApi");
+
+            var x  = await client.PutAsJsonAsync<ProductDto>("Product/Add",  product);
+            x.EnsureSuccessStatusCode();
+            return RedirectToAction("Index");
+        }
         public IActionResult Privacy()
         {
             return View();

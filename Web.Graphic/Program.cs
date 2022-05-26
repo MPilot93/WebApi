@@ -3,6 +3,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient("ProductApi", configClient => { configClient.BaseAddress = new Uri("https://localhost:7038/"); });
+builder.Services.AddHttpClient("CartApi", configClient => { configClient.BaseAddress = new Uri("https://localhost:7239/"); });
+
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
